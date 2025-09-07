@@ -16,18 +16,18 @@ app.use("/customer/auth/*", function auth(req,res,next){
 
         jwt.verify(token, "access", (err, decoded) => {
             if (err) {
-                return res.status(403).json({message: "User not authenticated"})
+                return res.status(404).json({message: "User not authenticated"})
             } else {
                 req.user = decoded;
                 next();
             }
         })
     } else {
-        return res.status(403).json({message: "User not logged in"})
+        return res.status(404).json({message: "User not logged in"})
     }
 });
  
-const PORT =5000;
+const PORT =6000;
 
 app.use("/customer", customer_routes);
 app.use("/", genl_routes);
